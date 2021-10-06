@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animacion {
+  width: 30%;
+  height: 83%;
+  position: absolute;
+  bottom: 0;
+  right: 200px;
+}
+
+.animacion img {
+  height: 105%;
+  position: absolute;
+  left: 65%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+.animacion .carrito {
+  position: relative;
+  left: 50px;
+  width: 450px;
+  height: auto;
+  padding-top: 35px;
+  animation: flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
