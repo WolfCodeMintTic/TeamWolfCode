@@ -8,14 +8,26 @@ import PublicLayout from "layouts/PublicLayout";
 import PrivateLayout from "layouts/PrivateLayout";
 import AuthLayout from "layouts/AuthLayout";
 import Team from 'pages/Team';
+import Productos from "pages/admin/Productos";
+import Ventas from "pages/admin/Ventas";
+import Usuarios from "pages/admin/Usuarios";
 function App() {
   return (
     <div>
       <Router>
         <Switch>
-          <Route path={['/admin']}>
+          <Route path={['/admin', '/admin/productos', '/admin/ventas', '/admin/usuarios']}>
             <PrivateLayout>
               <Switch>
+                <Route path='/admin/usuarios'>
+                  <Usuarios />
+                </Route>
+                <Route path='/admin/ventas'>
+                  <Ventas/>
+                </Route>
+                <Route path='/admin/productos'>
+                  <Productos />
+                </Route>
                 <Route path='/admin'>
                   <Admin />
                 </Route>
