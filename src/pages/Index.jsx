@@ -18,7 +18,6 @@ const Index = () => {
                 <img className="detalle" src={detalle} width="450" />
                 <img src={carrito} className="carrito " />
             </div>
-
         </>
     )
 }
