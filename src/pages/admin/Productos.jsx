@@ -22,7 +22,6 @@ class Admin extends React.Component {
       Producto: "",
       Descripcion: "",
       Valor: "",
-      Estado: "",
     },
   };
 
@@ -55,7 +54,6 @@ class Admin extends React.Component {
         arreglo[contador].Producto = dato.Producto;
         arreglo[contador].Descripcion = dato.Descripcion;
         arreglo[contador].Valor = dato.Valor;
-        arreglo[contador].Estado = dato.Estado;
       }
       contador++;
     });
@@ -121,7 +119,6 @@ class Admin extends React.Component {
                   <th>Producto</th>
                   <th>Descripcion</th>
                   <th>Valor</th>
-                  <th>Estado</th>
                   <th>Acción</th>
                 </tr>
               </thead>
@@ -135,7 +132,6 @@ class Admin extends React.Component {
                     <td>{dato.Producto}</td>
                     <td>{dato.Descripcion}</td>
                     <td>{dato.Valor}</td>
-                    <td>{dato.Estado}</td>
                     <td>
 
                       <Button
@@ -217,19 +213,6 @@ class Admin extends React.Component {
                 value={this.state.form.Valor}
               />
             </FormGroup>
-
-            <FormGroup>
-              <label>
-                Estado:
-              </label>
-              <input
-                className="form-control"
-                name="Estado"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.form.Estado}
-              />
-            </FormGroup>
           </ModalBody>
 
           <ModalFooter>
@@ -296,18 +279,6 @@ class Admin extends React.Component {
             <FormGroup>
               <label>
                 Valor:
-              </label>
-              <input
-                className="form-control"
-                name="Descripcion"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label>
-                Estado:
               </label>
               <input
                 className="form-control"
