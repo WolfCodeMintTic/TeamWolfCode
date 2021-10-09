@@ -1,0 +1,14 @@
+.navbar__link {
+  cursor: pointer;
+  text-indent: .3em;
+
+}
+
+.navbar__link:hover {
+  transform: translateY(-2px);
+}
+
+.navbar__link--active {
+  border-bottom: 3px solid #29b6f6;
+  transition: border-bottom .5s ease-in-out;
+}
