@@ -11,6 +11,7 @@ const data = [
   { id: 4, Producto: "Jean", Descripcion: "Azul talla s", Valor: "100000", Estado: "Disponible" },
   { id: 5, Producto: "Camiseta", Descripcion: "Blanco talla L", Valor: "109000", Estado: "Disponible" },
   { id: 6, Producto: "Sombrero", Descripcion: "Cafe talla unica", Valor: "20000", Estado: "Disponible" },
+  { id: 6, Producto: "Sombrero", Descripcion: "Cafe talla unica", Valor: "20000", Estado: "Disponible" },
 ];
 class Admin extends React.Component {
   state = {
