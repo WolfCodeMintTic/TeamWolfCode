@@ -8,15 +8,15 @@ import "assets/navbar.css"
 
 const navbar = () => {
     return (
-        <nav className=" navbar flex  items-center justify-between w-5/6 m-auto py-5 px-0">
+        <nav className="hidden lg:flex">
+            <div className="hidden lg:flex navbar items-center justify-between w-5/6 m-auto py-5 px-0">
             <img src={wolf} className="w-12 " />
             <NavLink
                 exact
                 activeClassName="navbar__link--active"
                 className="exact navbar__link no-underline text-white hover:text-blue-400"
                 to="/">
-                    <i className="fa fa-home cursor-pointer" />
-                    HOME
+                    <i className="fa fa-home cursor-pointer" />HOME
             </NavLink>
             <NavLink
                 to="/team"
@@ -29,6 +29,7 @@ const navbar = () => {
                 <button className="bg-blue-500 p-2 text-white shadow-md hover:bg-indigo-700 rounded-lg">Iniciar sesion</button>
             </Link>
             <img className="w-6 cursor-pointer" title="Cambiar tema" src={luna} alt="icono" />
+        </div>
         </nav >
     )
 }

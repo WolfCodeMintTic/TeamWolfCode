@@ -61,7 +61,7 @@ const Login = () => {
                         >
                             <span className='absolute left-0 inset-y-0 flex items-center pl-3 '>
                             </span>
-                            <Link to='/admin' className='text-white'>Ingresar</Link>
+                            <Link to='/admin' className='text-white no-underline'>Ingresar</Link>
                         </button>
                     </div>
 
