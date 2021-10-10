@@ -74,7 +74,7 @@ const Registro = () => {
                     >
                         <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                         </span>
-                        <Link to='/admin' className='text-white'>Regístrar</Link>
+                        <Link to='/admin' className='text-white no-underline'>Regístrar</Link>
                     </button>
                 </div>
 

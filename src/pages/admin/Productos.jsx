@@ -23,7 +23,6 @@ class Admin extends React.Component {
       Producto: "",
       Descripcion: "",
       Valor: "",
-      Estado: "",
     },
   };
 
@@ -56,7 +55,6 @@ class Admin extends React.Component {
         arreglo[contador].Producto = dato.Producto;
         arreglo[contador].Descripcion = dato.Descripcion;
         arreglo[contador].Valor = dato.Valor;
-        arreglo[contador].Estado = dato.Estado;
       }
       contador++;
     });
@@ -100,12 +98,12 @@ class Admin extends React.Component {
     return (
 
 
-      <div className="bg-gray-200 h-screen w-screen"><>
+      <div className=" h-screen w-screen"><>
 
         <Container>
           <div className="flex flex-row items-center justify-between w-5/6  m-auto pb-0 pt-4">
             <div className="box">
-              <div className="container-1">
+              <div className="container-1 border-2 rounded-2xl">
                 <span className="icon"><i className="fa fa-search"></i></span>
                 <input className="rounded"  type="search" id="search" placeholder="Search..." />
               </div>
@@ -122,7 +120,6 @@ class Admin extends React.Component {
                   <th>Producto</th>
                   <th>Descripcion</th>
                   <th>Valor</th>
-                  <th>Estado</th>
                   <th>Acción</th>
                 </tr>
               </thead>
@@ -136,7 +133,6 @@ class Admin extends React.Component {
                     <td>{dato.Producto}</td>
                     <td>{dato.Descripcion}</td>
                     <td>{dato.Valor}</td>
-                    <td>{dato.Estado}</td>
                     <td>
 
                       <Button
@@ -218,19 +214,6 @@ class Admin extends React.Component {
                 value={this.state.form.Valor}
               />
             </FormGroup>
-
-            <FormGroup>
-              <label>
-                Estado:
-              </label>
-              <input
-                className="form-control"
-                name="Estado"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.form.Estado}
-              />
-            </FormGroup>
           </ModalBody>
 
           <ModalFooter>
@@ -297,18 +280,6 @@ class Admin extends React.Component {
             <FormGroup>
               <label>
                 Valor:
-              </label>
-              <input
-                className="form-control"
-                name="Descripcion"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label>
-                Estado:
               </label>
               <input
                 className="form-control"

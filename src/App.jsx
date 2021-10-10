@@ -4,6 +4,7 @@ import Admin from "pages/admin/Index";
 import Index from "pages/Index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "assets/styles.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import PublicLayout from "layouts/PublicLayout";
 import PrivateLayout from "layouts/PrivateLayout";
 import AuthLayout from "layouts/AuthLayout";
