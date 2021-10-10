@@ -95,12 +95,12 @@ class Admin extends React.Component {
     return (
 
 
-      <div className="bg-gray-200 h-screen w-screen"><>
+      <div className=" h-screen w-screen"><>
 
         <Container>
           <div className="flex flex-row items-center justify-between w-5/6  m-auto pb-0 pt-4">
             <div className="box">
-              <div className="container-1">
+              <div className="container-1 border-2 rounded-2xl">
                 <span className="icon"><i className="fa fa-search"></i></span>
                 <input className="rounded"  type="search" id="search" placeholder="Search..." />
               </div>

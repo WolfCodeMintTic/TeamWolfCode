@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-    Table, Input, Button, Container, Modal, ModalBody, ModalHeader,
-    FormGroupm, ModalFooter, FormGroup, NavbarText
+    Table, Button, Container,
 } from "reactstrap";
 import AddModal from 'components/AddModal';
 import EditModal from 'components/EditModal';
