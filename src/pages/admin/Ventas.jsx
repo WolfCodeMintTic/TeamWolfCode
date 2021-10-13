@@ -5,8 +5,14 @@ import {
 import AddModal from 'components/AddModal';
 import EditModal from 'components/EditModal';
 import React, { useState } from "react"
+import axios from "axios";
 
 const Ventas = () => {
+    const initialState = [
+        { idVenta: 1, valorVenta: 50000, id: 1, cantidad: 2, precioUnitario: 250000, fechaVenta: "05/02/2000 04:33 p.m", cedulaCliente: 1111111111, cliente: "pepito", vendedor: "vend@gmail.com", estado: "En progeso" }
+    ]
+    const [data, setData] = useState(initialState)
+    //Modal
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
 
@@ -22,14 +28,13 @@ const Ventas = () => {
         setItem(item);
     }
 
-    const deleteFn = () => {
+    const deleteFn = (idVenta) => {
         let opcion = window.confirm("Estas seguro que quieres eliminar la venta");
-        // if (opcion == true) {
-        //     const newdata = data.filter(e => e.id !== id);
-        //     setData(newdata)
-        // }
+        if (opcion == true) {
+            const newdata = data.filter(e => e.idVenta !== idVenta);
+            setData(newdata)
+        }
     }
-
 
     return (
         <>
@@ -52,38 +57,43 @@ const Ventas = () => {
                 <br />
                 <Table responsive>
                     <thead>
-                        <th>ID</th>
-                        <th>ValorTotal</th>
-                        <th>IDVenta</th>
-                        <th>Cantidad</th>
-                        <th>PrecioUnitario</th>
-                        <th>FechaVenta</th>
-                        <th>CC-Cliente</th>
-                        <th>Cliente</th>
-                        <th>Vendedor</th>
-                        <th>Acciones</th>
+                        <tr>
+                            <th>IDVenta</th>
+                            <th>ValorTotal</th>
+                            <th>ID</th>
+                            <th>Cantidad</th>
+                            <th>PrecioUnitario</th>
+                            <th>FechaVenta</th>
+                            <th>CC-Cliente</th>
+                            <th>Cliente</th>
+                            <th>Vendedor</th>
+                            <th>Accion</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>50000</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>25000</td>
-                            <td>05/12/1997</td>
-                            <td>1111111111</td>
-                            <td>Pepito</td>
-                            <td>vendedor@vendedor.com</td>
-                            <td>
-                                <Button color="primary" onClick={() => editFn(item)}><i class="far fa-edit"></i></Button>{" "}
-                                <Button color="danger" onClick={() => deleteFn(item.id)}><i class="fas fa-trash"></i></Button>
-                            </td>
-                        </tr>
+                        {data.map((item) => (
+                            <tr key={item.idVenta}>
+                                <th>{item.idVenta}</th>
+                                <td>{item.valorVenta}</td>
+                                <td>{item.id}</td>
+                                <td>{item.cantidad}</td>
+                                <td>{item.precioUnitario}</td>
+                                <td>{item.fechaVenta}</td>
+                                <td>{item.cedulaCliente}</td>
+                                <td>{item.cliente}</td>
+                                <td><a href={`mailto:${item.vendedor}`}>{item.vendedor}</a></td>
+                                <td>{item.estado}</td>
+                                <td>
+                                    <Button color="primary" onClick={() => editFn(item)}><i class="far fa-edit"></i></Button>{" "}
+                                    <Button color="danger" onClick={() => deleteFn(item.id)}><i class="fas fa-trash"></i></Button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
             </Container>
-            <AddModal showAddModal={showAddModal} setShowAddModal={setShowAddModal} />
-            <EditModal showEditModal={showEditModal} setShowEditModal={setShowEditModal} />
+            <AddModal showAddModal={showAddModal} setShowAddModal={setShowAddModal} setData={setData} data={data} />
+            <EditModal showEditModal={showEditModal} setShowEditModal={setShowEditModal} setData={setData} data={data} item={item} />
         </>
     )
 }
