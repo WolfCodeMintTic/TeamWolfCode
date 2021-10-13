@@ -55,7 +55,7 @@ const Ventas = () => {
                 </div>
                 <br />
                 <br />
-                <Table responsive>
+                <Table responsive className="tabla">
                     <thead>
                         <tr>
                             <th>IDVenta</th>
@@ -67,7 +67,7 @@ const Ventas = () => {
                             <th>CC-Cliente</th>
                             <th>Cliente</th>
                             <th>Vendedor</th>
-                            <th>Accion</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,8 +84,8 @@ const Ventas = () => {
                                 <td><a href={`mailto:${item.vendedor}`}>{item.vendedor}</a></td>
                                 <td>{item.estado}</td>
                                 <td>
-                                    <Button color="primary" onClick={() => editFn(item)}><i class="far fa-edit"></i></Button>{" "}
-                                    <Button color="danger" onClick={() => deleteFn(item.id)}><i class="fas fa-trash"></i></Button>
+                                    <Button color="primary" onClick={() => editFn(item)}><i className="far fa-edit"></i></Button>{" "}
+                                    <Button color="danger" onClick={() => deleteFn(item.id)}><i className="fas fa-trash"></i></Button>
                                 </td>
                             </tr>
                         ))}
