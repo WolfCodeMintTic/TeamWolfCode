@@ -4,7 +4,7 @@ import {
 } from "reactstrap";
 import AddModal from 'components/AddModal';
 import EditModal from 'components/EditModal';
-import React, { useState, useE } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios";
 
 const Ventas = () => {
