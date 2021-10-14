@@ -4,14 +4,12 @@ import {
 } from "reactstrap";
 import AddModal from 'components/AddModal';
 import EditModal from 'components/EditModal';
-import React, { useState } from "react"
+import React, { useState, useE } from "react"
 import axios from "axios";
 
 const Ventas = () => {
-    const initialState = [
-        { idVenta: 1, valorVenta: 50000, id: 1, cantidad: 2, precioUnitario: 250000, fechaVenta: "05/02/2000 04:33 p.m", cedulaCliente: 1111111111, cliente: "pepito", vendedor: "vend@gmail.com", estado: "En progeso" }
-    ]
-    const [data, setData] = useState(initialState)
+    const [data, setData] = useState([])
+    const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
     //Modal
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -29,12 +27,43 @@ const Ventas = () => {
     }
 
     const deleteFn = (idVenta) => {
-        let opcion = window.confirm("Estas seguro que quieres eliminar la venta");
+        let opcion = window.confirm("Estas seguro que quiere eliminar la venta");
         if (opcion == true) {
             const newdata = data.filter(e => e.idVenta !== idVenta);
             setData(newdata)
         }
     }
+
+    const loadAxios = async () => {
+        await axios.get(URL).then(resp => {
+            const nuewData = []
+            const dataAxios = resp.data
+
+            dataAxios.map(item => {
+                nuewData.push(
+                    {
+                        idVenta: item.idVenta,
+                        valorVenta: item.valorVenta,
+                        id: item.id,
+                        cantidad: item.cantidad,
+                        precioUnitario: item.precioUnitario,
+                        fechaVenta: item.fechaVenta,
+                        cedulaCliente: item.cedulaCliente,
+                        cliente: item.cliente,
+                        vendedor: item.vendedor,
+                        estado: " "
+                    },
+                )
+            })
+            setData(nuewData)
+        });
+    }
+
+    useEffect(() => {
+        if (ejecutarConsulta) {
+            loadAxios();
+        }
+    }, [ejecutarConsulta]);
 
     return (
         <>
@@ -45,8 +74,8 @@ const Ventas = () => {
                         <div className="border-2 rounded-xl mt-4">
                             <span className="w-1/12"><i className="fa fa-search"></i></span>
                             <input type="search"
-                                className="w-11/12"
-                                id="search" placeholder="Search..." />
+                                className="w-11/12 py-1"
+                                placeholder="Search..." />
                         </div>
                     </div>
                     <button>

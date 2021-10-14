@@ -42,7 +42,6 @@ export default function EditModal(props) {
                             <input className="form-control"
                                 type="number"
                                 name="idVenta"
-                                readOnly
                                 value={item.idVenta}
                             />
                         </Col>
@@ -66,7 +65,6 @@ export default function EditModal(props) {
                             <input className="form-control"
                                 type="text"
                                 required
-                                readOnly
                                 name="id"
                                 defaultValue={item.id}
                             />
@@ -102,7 +100,6 @@ export default function EditModal(props) {
                             <input className="form-control"
                                 type="datetime-local"
                                 name="fechaVenta"
-                                readOnly
                                 defaultChecked={item.fechaVenta}
                             />
                         </Col>
@@ -114,7 +111,6 @@ export default function EditModal(props) {
                             <input className="form-control"
                                 type="number"
                                 name="cedulaCliente"
-                                readOnly
                                 defaultValue={item.cedulaCliente}
                             />
                         </Col>
@@ -126,7 +122,6 @@ export default function EditModal(props) {
                             <input className="form-control"
                                 type="text"
                                 name="cliente"
-                                readOnly
                                 defaultValue={item.cliente}
                             />
                         </Col>
@@ -137,7 +132,6 @@ export default function EditModal(props) {
                             <input className="form-control" 
                             type="email"
                                 name="vendedor"
-                                readOnly
                                 defaultValue={item.vendedor}
                             />
                         </Col>
