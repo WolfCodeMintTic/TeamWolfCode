@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios";
 
 const Ventas = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
     //Modal
     const [showAddModal, setShowAddModal] = useState(false);
@@ -114,7 +114,7 @@ const Ventas = () => {
                                 <td>{item.estado}</td>
                                 <td>
                                     <Button color="primary" onClick={() => editFn(item)}><i className="far fa-edit"></i></Button>{" "}
-                                    <Button color="danger" onClick={() => deleteFn(item.id)}><i className="fas fa-trash"></i></Button>
+                                    <Button color="danger" onClick={() => deleteFn(item.idVenta)}><i className="fas fa-trash"></i></Button>
                                 </td>
                             </tr>
                         ))}

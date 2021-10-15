@@ -14,9 +14,9 @@ const Index = () => {
                     </p>
                 </div>
             </div>
-            <div className="animacion hidden lg:flex">
+            <div className=" animacion hidden lg:flex">
                 <img className="detalle" src={detalle} width="450" />
-                <img src={carrito} className="carrito " />
+                <img src={carrito} className="carrito" />
             </div>
         </>
     )
