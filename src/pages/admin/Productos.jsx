@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Container, Modal, ModalBody, ModalFooter, ModalHeader, FormGroup } from 'reactstrap';
+import { Table, Button, Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'assets/productos.css';
 import AddModalProducto from 'components/AddModalProducto';
 import EditModalProducto from 'components/EditModalProducto';
 import axios from "axios";
+import {nanoid} from 'nanoid'
+const URL = "http://localhost:5000/productos"
 
-const datai = [
-  { idProducto: 1, producto: "Camiseta", descripcion: "Roja talla m", valorUnitario: "10000", Estado: "Disponible" },
-  { idProducto: 2, producto: "pantalon", descripcion: "Negro talla 34", valorUnitario: "80000", Estado: "Disponible" },
-];
 const Productos = () => {
-  const [data, setData] = useState(datai);
+  const [data, setData] = useState([]);
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
   //Modal
   const [showAddModal, setShowAddModal] = useState(false);
@@ -45,7 +43,6 @@ const Productos = () => {
       dataAxios.map(item => {
         nuewData.push(
           {
-            idProducto: item.idProducto,
             producto: item.producto,
             descripcion: item.descripcion,
             valorUnitario: item.valorUnitario
@@ -92,8 +89,8 @@ const Productos = () => {
           </thead>
           <tbody>
             {data.map((item) => (
-              <tr key={item.idProducto}>
-                <th>{item.idProducto}</th>
+              <tr key={nanoid()}>
+                <td>{item._id}</td>
                 <td>{item.producto}</td>
                 <td>{item.descripcion}</td>
                 <td>{item.valorUnitario}</td>
