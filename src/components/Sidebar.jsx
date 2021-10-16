@@ -1,4 +1,5 @@
 import React from 'react'
+import useActiveRoute from 'hooks/useActiveRoute';
 import { Link } from 'react-router-dom';
 import CarritoLogo from './CarritoLogo';
 const Sidebar = () => {
@@ -22,9 +23,10 @@ const Sidebar = () => {
 
 
 const Ruta = ({ icono, ruta, nombre }) => {
+    const isActive = useActiveRoute(ruta);
     return (
         <Link className="no-underline" to={ruta}>
-            <button className='p-1 my-2 bg-blue-500 hover:bg-indigo-700 flex w-full items-center text-white rounded-md'>
+            <button className={`p-1 my-2 bg-${isActive ? 'indigo' : 'blue'}-600 hover:bg-indigo-900 flex w-full items-center text-white rounded-md`}>
                 <i className={`${icono} w-10`} />
                 {nombre}
             </button>

@@ -9,124 +9,151 @@ export default function EditModal(props) {
     const [modal, setModal] = useState(false);
     const toggle = () => setShowEditModal(!showEditModal);
 
-    const handleSubmit = (e) => {
+    const SubmitForm = (e) => {
         e.preventDefault()
-        
+        const idVenta = item.idVenta;
+        const valorVenta = e.target.valorVenta.value;
+        const id = item.id;
+        const cantidad = e.target.cantidad.value;
+        const precioUnitario = e.target.precioUnitario.value;
+        const fechaVenta = e.target.fechaVenta.value;
+        const cedulaCliente = e.target.cedulaCliente.value;
+        const cliente = e.target.cliente.value;
+        const vendedor = e.target.vendedor.value;
+        const estado = e.target.estado.value;
+        const ventaArray = [{ idVenta, valorVenta, id, cantidad, precioUnitario, fechaVenta, cedulaCliente, cliente, vendedor, estado }]
+        let nuewData = data.map(obj => ventaArray.find(o => o.idVenta === obj.idVenta) || obj);
+        setData(nuewData);
         setShowEditModal(false)
     }
-
     console.log("data:", data)
-
 
     return (
         <Modal isOpen={showEditModal} toggle={toggle}>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={SubmitForm}>
                 <ModalHeader>
-                    <div><h3>Edit</h3></div>
+                    <div><h3>Editar venta</h3></div>
                 </ModalHeader>
+
                 <ModalBody>
                     <FormGroup row>
-                        <Label sm={3}>ID</Label>
-                        <Col sm={9}>
-                            <input className="form-control" type="text"
+                        <Label sm={4} htmlFor="idVenta">ID:</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="number"
+                                name="idVenta"
+                                value={item.idVenta}
+                            />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup row className='mt-2'>
+                        <Label sm={4} htmlFor="valorVenta">Valor total de venta</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="number"
+                                name="valorVenta"
+                                defaultValue={item.valorVenta}
+                                required
+                            />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup row className='mt-2'>
+                        <Label sm={4} htmlFor="id">ID de la venta</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="text"
+                                required
                                 name="id"
-                                readOnly
-                                value="1"
-                            />
-                        </Col>
-                    </FormGroup>
-
-
-
-                    <FormGroup row className='mt-2'>
-                        <Label sm={3}>ValorTotal</Label>
-                        <Col sm={9}>
-                            <input className="form-control" type="number"
-                                name="number"
-                                placeholder="100000"
-                                defaultValue="calorTotal"
-                                required
+                                defaultValue={item.id}
                             />
                         </Col>
                     </FormGroup>
 
                     <FormGroup row className='mt-2'>
-                        <Label sm={3}>IDVenta</Label>
-                        <Col sm={9}>
-                            <input className="form-control" type="text"
+                        <Label sm={4} htmlFor="cantidad">Cantidad</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="number"
                                 required
-                                placeholder="1"
-                                name="lastname"
-                                defaultValue="idVenta"
-                            />
-                        </Col>
-                    </FormGroup>
-
-                    <FormGroup row className='mt-2'>
-                        <Label sm={3}>Cantidad</Label>
-                        <Col sm={9}>
-                            <input className="form-control" type="number"
-                                required
-                                placeholder="50000"
                                 name="cantidad"
-                                defaultValue="Cantidad"
+                                defaultValue={item.cantidad}
                             />
                         </Col>
                     </FormGroup>
 
                     <FormGroup row className='mt-2'>
-                        <Label sm={3}>PrecioUnitario</Label>
-                        <Col sm={9}>
-                            <Input type="number" name="number"  defaultValue="PrecioUnitario">
-                            </Input>
-                        </Col>
-                    </FormGroup>
-
-                    <FormGroup row className='mt-2'>
-                        <Label sm={3}>FechaVenta</Label>
-                        <Col sm={9}>
-                            <Input type="datetime-local"
-                                name="datetime"readOnly defaultChecked="fecha"
+                        <Label sm={4} htmlFor="precioUnitario">Precio por unidad</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="number"
+                                name="precioUnitario"
+                                defaultValue={item.PrecioUnitario}
                             />
                         </Col>
                     </FormGroup>
 
                     <FormGroup row className='mt-2'>
-                        <Label sm={3}>C.C</Label>
-                        <Col sm={9}>
-                            <Input type="number" name="number"
-                            readOnly 
-                            defaultValue="Cedula">
-                            </Input>
+                        <Label sm={4} htmlFor="fechaVenta">Fecha de venta</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="datetime-local"
+                                name="fechaVenta"
+                                defaultChecked={item.fechaVenta}
+                            />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup row className='mt-2'>
+                        <Label sm={4} htmlFor="cedulaCliente">Cedula</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="number"
+                                name="cedulaCliente"
+                                defaultValue={item.cedulaCliente}
+                            />
                         </Col>
                     </FormGroup>
 
                     <FormGroup row>
-                        <Label sm={3}>Cliente</Label>
-                        <Col sm={9}>
-                            <input className="form-control" type="text"
+                        <Label sm={4} htmlFor="cliente">Cliente</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="text"
                                 name="cliente"
-                                readOnly
-                                value="name"
+                                defaultValue={item.cliente}
                             />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Label sm={3}>Vendedor</Label>
-                        <Col sm={9}>
-                            <input className="form-control" type="email"
+                        <Label sm={4} htmlFor="vendedor">Vendedor</Label>
+                        <Col sm={12}>
+                            <input className="form-control" 
+                            type="email"
                                 name="vendedor"
-                                readOnly
-                                value="namev"
+                                defaultValue={item.vendedor}
                             />
                         </Col>
                     </FormGroup>
-
+                    <FormGroup row>
+                        <Label sm={4} htmlFor="estado">Estado de la venta:</Label>
+                        <Col sm={12}>
+                            <Input type="select" name="select" name="estado" required
+                                defaultValue={item.estado}
+                            >
+                                <option disabled>Seleccione una opcion</option>
+                                <option>En proceso</option>
+                                <option>Cancelada</option>
+                                <option>Entregado</option>
+                            </Input>
+                        </Col>
+                    </FormGroup>
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button color="primary" type="submit">Save</Button>{' '}
-                    <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    <Button color="primary" type="submit">Guardar</Button>{' '}
+                    <Button color="secondary" onClick={toggle}>Cancelar</Button>
                 </ModalFooter>
             </Form>
         </Modal>

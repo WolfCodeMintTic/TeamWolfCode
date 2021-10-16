@@ -21,16 +21,15 @@
 .animacion .carrito {
   position: relative;
   left: 50px;
-  width: 450px;
+  width: 400px;
   height: auto;
-  padding-top: 35px;
+  padding-bottom: 50px;
   animation: flotar 3s ease-in-out infinite;
 }
 .principal{
   align-items: center;
   display: flex;
   height: 100vh;
-
 }
 .secundario{
   margin:0 auto ;
@@ -48,3 +47,11 @@
   }
 }
 
+.tabla tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+.tabla tr:hover{
+  background-color: rgb(174, 174, 179);
+  cursor: pointer;
+}
