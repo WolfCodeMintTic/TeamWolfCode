@@ -1,28 +1,41 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import {crearProducto} from 'utils/api'
 import {
-    Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Form
+    Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup
 } from "reactstrap";
-import React, { useState } from "react"
+import React, { useRef } from "react"
 
 export default function AddModalProducto(props) {
-    const { showAddModal, setShowAddModal, data, setData, ...rest } = props;
-    const [modal, setModal] = useState(false);
+    const { showAddModal, setShowAddModal, data, setData} = props;
     const toggle = () => setShowAddModal(!showAddModal);
 
-    const SubmitForm = (e) => {
+    const form = useRef(null)
+    const SubmitForm = async(e) => {
         e.preventDefault()
-        const idProducto = data.length + 1;
-        const producto = e.target.producto.value;
-        const descripcion = e.target.descripcion.value;
-        const valorUnitario = e.target.valorUnitario.value;
-        setData([{ idProducto, producto, descripcion, valorUnitario}, ...data]);
+        const fd = new FormData(form.current);
+        const nuevoProducto ={};
+        fd.forEach((value, key) => {
+            nuevoProducto[key] = value;
+        });
+        console.log("fomr datas", nuevoProducto)
+        await crearProducto({
+            producto: nuevoProducto.producto, 
+            descripcion: nuevoProducto.descripcion, 
+            valorUnitario: nuevoProducto.valorUnitario
+        },
+        (response)=>{
+            console.log(response.data);
+            console.log("producto creado")
+        },
+        (error) =>{
+            console.error(error);
+        });
         setShowAddModal(false)
     }
 
-
     return (
         <Modal isOpen={showAddModal} toggle={toggle}>
-            <Form onSubmit={SubmitForm}>
+            <form ref={form} onSubmit={SubmitForm}>
                 <ModalHeader>
                     <div><h3>Registrar nuevo producto</h3></div>
                 </ModalHeader>
@@ -68,7 +81,7 @@ export default function AddModalProducto(props) {
                     <Button color="primary" type="submit">Registrar</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancelar</Button>
                 </ModalFooter>
-            </Form>
+            </form>
         </Modal>
     )
 }

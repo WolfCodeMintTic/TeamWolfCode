@@ -35,7 +35,7 @@ const Ventas = () => {
     }
 
     const loadAxios = async () => {
-        await axios.get(URL).then(resp => {
+        await axios.get("http://localhost:5000/productos/").then(resp => {
             const nuewData = []
             const dataAxios = resp.data
 

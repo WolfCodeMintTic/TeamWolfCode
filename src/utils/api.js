@@ -1,20 +1,26 @@
-// import axios from "axios";
-// const URL = "http://localhost:5000/productos"
-// export const obtenerProducto = async (setData, setEjecutarConsulta) =>{
-//     await axios.get(URL).then(resp => {
-//         const nuewData = []
-//         const dataAxios = resp.data
+import axios from "axios";
 
-//         dataAxios.map(item => {
-//             nuewData.push(
-//                 {
-//                     // idProducto: item.idProducto,
-//                     producto: item.producto,
-//                     descripcion: item.descripcion,
-//                     valorUnitario: item.valorUnitario
-//                 },
-//             )
-//         })
-//         setData(nuewData)
-//     });
-// }
+const executeRequest = async (options, resCallback, errCallback) => {
+    await axios.request(options).then(resCallback).catch(errCallback);
+};
+
+//Crear producto
+export const crearProducto = async (data, resCallback, errorCallback) => {
+    const options = {
+        method : 'POST',
+        url: 'http://localhost:5000/productos/',
+        headers : {'content-Type': 'application/json'},
+        data,
+    };
+    await executeRequest(options, resCallback, errorCallback);
+};
+
+export const actualizarProducto = async(id, data,resCallback, errorCallback)=> {
+    const options ={
+        method: 'PATCH',
+        url: `http://localhost:5000/productos/${id}/`,
+        headers : { 'Content-Type': 'application/json'},
+        data,
+    };
+    await executeRequest(options, resCallback, errorCallback);
+};
