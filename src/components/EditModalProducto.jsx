@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import {actualizarProducto} from 'utils/api'
+import {actualizarProducto} from 'utils/productos/api'
 import {
     Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Form
 } from "reactstrap";
