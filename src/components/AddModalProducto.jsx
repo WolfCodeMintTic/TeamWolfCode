@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import {crearProducto} from 'utils/api'
+import {crearProducto} from 'utils/productos/api'
 import {
     Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup
 } from "reactstrap";

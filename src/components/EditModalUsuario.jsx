@@ -55,7 +55,7 @@ export default function EditModalUsuario(props) {
                                 disabled>Seleccione una opcion
                             </option>
                                 <option>Admin</option>
-                                <option>usuario</option>
+                                <option>Vendedor</option>
                             </Input>
                         </Col>
                     </FormGroup>

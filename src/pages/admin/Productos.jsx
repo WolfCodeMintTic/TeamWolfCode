@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'assets/productos.css';
 import AddModalProducto from 'components/AddModalProducto';
 import EditModalProducto from 'components/EditModalProducto';
 import axios from "axios";
@@ -40,7 +39,7 @@ const Productos = () => {
   };
 
   const loadAxios = async () => {
-    await axios.get("http://localhost:5000/productos").then(resp => {
+    await axios.get("http://localhost:5000/productos/").then(resp => {
       const nuewData = []
       const dataAxios = resp.data
 
