@@ -2,7 +2,10 @@ import React from 'react'
 import useActiveRoute from 'hooks/useActiveRoute';
 import { Link } from 'react-router-dom';
 import CarritoLogo from './CarritoLogo';
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Sidebar = () => {
+    const { logout } = useAuth0();
     return (
         <nav className='hidden lg:flex lg:w-72 border border-gray-300 h-full flex-col bg-gray-900 p-4 '>
             <Link className="no-underline" to='/admin'>
@@ -15,7 +18,9 @@ const Sidebar = () => {
                 <Ruta icono='fas fa-users' ruta='/admin/usuarios' nombre='Usuarios' />
             </div>
             <Link to='/'>
-            <button className=" bg-blue-500 p-2 text-white shadow-md hover:bg-indigo-700 rounded-lg w-full">Cerrar Sesión</button>
+            <button 
+            onClick={() => logout({ returnTo: window.location.origin })}
+            className=" bg-blue-500 p-2 text-white shadow-md hover:bg-indigo-700 rounded-lg w-full">Cerrar Sesión</button>
             </Link>
         </nav>
     );

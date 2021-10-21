@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 import wolf from 'media/wolf.png'
 import luna from 'media/luna.svg'
 import { NavLink } from 'react-router-dom'
 import "assets/navbar.css"
 
 
-const navbar = () => {
+const Navbar = () => {
+   const { loginWithRedirect } = useAuth0(); 
     return (
         <nav className="hidden lg:flex">
             <div className="hidden lg:flex navbar items-center justify-between w-5/6 m-auto py-5 px-0">
@@ -25,13 +26,13 @@ const navbar = () => {
                 <i className="fas fa-users" />
                 TEAM
             </NavLink>
-            <Link to="/login">
-                <button className="bg-blue-500 p-2 text-white shadow-md hover:bg-indigo-700 rounded-lg">Iniciar sesion</button>
-            </Link>
+                <button
+                onClick={() => loginWithRedirect()}
+                 className="bg-blue-500 p-2 text-white shadow-md hover:bg-indigo-700 rounded-lg">Iniciar sesion</button>
             <img className="w-6 cursor-pointer" title="Cambiar tema" src={luna} alt="icono" />
         </div>
         </nav >
     )
 }
 
-export default navbar
+export default Navbar

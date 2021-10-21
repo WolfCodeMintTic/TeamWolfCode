@@ -145,8 +145,8 @@ export default function AddModal(props) {
                     <FormGroup row>
                         <Label sm={4} htmlFor="estado">Estado de la venta:</Label>
                         <Col sm={12}>
-                            <Input type="select" name="estado" required defaultValue={0}>
-                                <option disabled value={0}>Seleccione una opcion</option>
+                            <Input type="select" name="estado" required defaultValue=''>
+                                <option disabled value=''>Seleccione una opcion</option>
                                 <option>En proceso</option>
                                 <option>Cancelada</option>
                                 <option>Entregado</option>
