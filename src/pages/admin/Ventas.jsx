@@ -7,6 +7,7 @@ import EditModal from 'components/EditModal';
 import React, { useState, useEffect } from "react"
 import axios from "axios";
 import { nanoid } from 'nanoid'
+import { obtenerVentas } from "utils/vendedores/api";
 
 
 const Ventas = () => {
@@ -40,7 +41,7 @@ const Ventas = () => {
     };
 
     const loadAxios = async () => {
-        await axios.get("http://localhost:5000/ventas/").then(resp => {
+        await obtenerVentas(resp => {
             const nuewData = []
             const dataAxios = resp.data
 

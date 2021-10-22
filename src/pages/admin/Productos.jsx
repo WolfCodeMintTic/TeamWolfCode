@@ -5,6 +5,7 @@ import AddModalProducto from 'components/AddModalProducto';
 import EditModalProducto from 'components/EditModalProducto';
 import axios from "axios";
 import { nanoid } from 'nanoid'
+import { obtenerProductos } from 'utils/productos/api';
 
 
 const Productos = () => {
@@ -39,7 +40,7 @@ const Productos = () => {
   };
 
   const loadAxios = async () => {
-    await axios.get("http://localhost:5000/productos/").then(resp => {
+    await obtenerProductos(resp => {
       const nuewData = []
       const dataAxios = resp.data
 
@@ -89,12 +90,13 @@ const Productos = () => {
               <th>Producto</th>
               <th>Descripcion</th>
               <th>ValorUnitario</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
               <tr key={nanoid()}>
-                <td>{item._id.slice(22)}</td>
+                <th>{item._id.slice(22)}</th>
                 <td>{item.producto}</td>
                 <td>{item.descripcion}</td>
                 <td>{item.valorUnitario}</td>
