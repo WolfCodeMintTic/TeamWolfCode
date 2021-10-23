@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// const baseURL = "http://localhost:5000"
+const baseURL = "https://nameless-eyrie-17054.herokuapp.com"
+
 const executeRequest = async (options, resCallback, errCallback) => {
     await axios.request(options).then(resCallback).catch(errCallback);
 };
@@ -11,7 +14,7 @@ const getToken = () => {
 export const obtenerUsuarios = async (successCallback, errorCallback) => {
     const options = {
         method: "GET",
-        url: "http://localhost:5000/usuarios/",
+        url: `${baseURL}/usuarios/`,
         headers: { 'Content-Type': 'application/json', authorization: getToken() },
     };
     await axios.request(options).then(successCallback).catch(errorCallback);
@@ -20,7 +23,7 @@ export const obtenerUsuarios = async (successCallback, errorCallback) => {
 export const obtenerDatosUsuarios = async (successCallback, errorCallback) => {
     const options = {
         method: "GET",
-        url: "http://localhost:5000/usuarios/self",
+        url: `${baseURL}/usuarios/self/`,
         headers: { 'Content-Type': 'application/json', authorization: getToken() },
     };
     await axios.request(options).then(successCallback).catch(errorCallback);
@@ -29,7 +32,7 @@ export const obtenerDatosUsuarios = async (successCallback, errorCallback) => {
 export const actualizarUsuario = async (id, data, successCallback, errorCallback) => {
     const options = {
         method: 'PATCH',
-        url: `http://localhost:5000/usuarios/${id}/`,
+        url: `${baseURL}/usuarios/${id}/`,
         headers: { 'Content-Type': 'application/json', authorization: getToken() },
         data,
     };

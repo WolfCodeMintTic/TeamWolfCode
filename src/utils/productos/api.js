@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const baseURL = "https://nameless-eyrie-17054.herokuapp.com"
+
 const executeRequest = async (options, resCallback, errorCallback) => {
     await axios.request(options).then(resCallback).catch(errorCallback);
 };
@@ -12,7 +14,7 @@ const getToken = () =>{
 export const obtenerProductos = async (successCallback, errorCallback) => {
     const options = {
         method: "GET",
-        url: "http://localhost:5000/productos/",
+        url: `${baseURL}/productos/ `,
         headers: {
             authorization: getToken(),
         },
@@ -25,7 +27,7 @@ export const obtenerProductos = async (successCallback, errorCallback) => {
 export const crearProducto = async (data, resCallback, errorCallback) => {
     const options = {
         method : 'POST',
-        url: 'http://localhost:5000/productos/',
+        url: '${baseURL}/productos/',
         headers: { 'content-Type': 'application/json', authorization: getToken()},
         data,
     };
@@ -35,7 +37,7 @@ export const crearProducto = async (data, resCallback, errorCallback) => {
 export const actualizarProducto = async(id, data,resCallback, errorCallback)=> {
     const options ={
         method: 'PATCH',
-        url: `http://localhost:5000/productos/${id}/`,
+        url: `${baseURL}/productos/${id}/`,
         headers: { 'Content-Type': 'application/json', authorization: getToken()},
         data,
     };
@@ -45,7 +47,7 @@ export const actualizarProducto = async(id, data,resCallback, errorCallback)=> {
 export const eliminarProducto = async (id, resCallback, errorCallback) => {
     const options = {
         method: 'DELETE',
-        url: `http://localhost:5000/productos/${id}/`,
+        url: `${baseURL}/productos/${id}/`,
         headers: { 'Content-Type': 'application/json', authorization: getToken() },
     };
     await executeRequest(options, resCallback, errorCallback);
