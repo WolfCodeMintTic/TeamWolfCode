@@ -5,7 +5,6 @@ import {
 import AddModal from 'components/AddModal';
 import EditModal from 'components/EditModal';
 import React, { useState, useEffect } from "react"
-import axios from "axios";
 import { nanoid } from 'nanoid'
 import { obtenerVentas } from "utils/ventas/api";
 import { eliminarVenta } from "utils/ventas/api";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 const useActiveRoute = (ruta) => {
     const location = useLocation();

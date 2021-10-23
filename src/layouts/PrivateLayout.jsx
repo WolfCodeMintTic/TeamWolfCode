@@ -36,7 +36,7 @@ const PrivateLayout = ({ children }) => {
         if (isAuthenticated) {
             fetchAuth0Token();
         }
-    }, [isAuthenticated, getAccessTokenSilently]);
+    }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]);
 
     if (isLoading || loadingUserInformation) return <div>Loading ...</div>;
     return (

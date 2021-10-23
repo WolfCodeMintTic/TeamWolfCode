@@ -3,7 +3,6 @@ import { Table, Button, Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddModalProducto from 'components/AddModalProducto';
 import EditModalProducto from 'components/EditModalProducto';
-import axios from "axios";
 import { nanoid } from 'nanoid'
 import { obtenerProductos } from 'utils/productos/api';
 import { eliminarProducto } from 'utils/productos/api';

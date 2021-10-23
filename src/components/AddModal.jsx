@@ -6,7 +6,7 @@ import { crearVenta } from "utils/ventas/api";
 import React, { useRef } from "react"
 
 export default function AddModal(props) {
-    const { showAddModal, setShowAddModal, data, setData} = props;
+    const { showAddModal, setShowAddModal, data} = props;
     const toggle = () => setShowAddModal(!showAddModal);
 
     const form = useRef(null)
