@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import PrivateComponent from './PrivateComponent';
 
 
 const SidebarResponsive = () => {
@@ -18,9 +19,18 @@ const SidebarResponsive = () => {
             {mostrarNavegacion && (
                 <ul className='bg-indigo-700'>
                     <ResponsiveRoute nombre='Perfil' ruta='/admin/' />
-                    <ResponsiveRoute nombre='Productos' ruta='/admin/Productos' />
-                    <ResponsiveRoute nombre='Ventas' ruta='/admin/ventas' />
-                    <ResponsiveRoute nombre='Usuarios' ruta='/admin/usuarios' />
+                    
+                    <PrivateComponent roleList={['Admin', 'Vendedor']}>
+                        <ResponsiveRoute nombre='Productos' ruta='/admin/Productos' />
+                    </PrivateComponent>s
+
+                    <PrivateComponent roleList={['Admin', 'Vendedor']}>
+                        <ResponsiveRoute nombre='Ventas' ruta='/admin/ventas' />
+                    </PrivateComponent>
+
+                    <PrivateComponent roleList={['Admin']}>
+                        <ResponsiveRoute nombre='Usuarios' ruta='/admin/usuarios' />
+                    </PrivateComponent>
                 </ul>
             )}
         </div>

@@ -3,6 +3,7 @@ import useActiveRoute from 'hooks/useActiveRoute';
 import { Link } from 'react-router-dom';
 import CarritoLogo from './CarritoLogo';
 import { useAuth0 } from "@auth0/auth0-react";
+import PrivateComponent from './PrivateComponent';
 
 const Sidebar = () => {
     const { logout, user } = useAuth0();
@@ -13,9 +14,15 @@ const Sidebar = () => {
             </Link>
             <div className='my-4 '>
                 <Ruta icono='fas fa-user' ruta='/admin/perfil' nombre='Perfil' usuario={user} />
+                <PrivateComponent roleList={['Admin', 'Vendedor']}>
                 <Ruta icono='fas fa-tshirt' ruta='/admin/productos' nombre='Productos' />
+                </PrivateComponent>
+                <PrivateComponent roleList={['Admin', 'Vendedor']}>
                 <Ruta icono='fas fa-cash-register' ruta='/admin/ventas' nombre='Ventas' />
+                </PrivateComponent>
+                <PrivateComponent roleList={['Admin']}>
                 <Ruta icono='fas fa-users' ruta='/admin/usuarios' nombre='Usuarios' />
+                </PrivateComponent>
             </div>
             <Link to='/'>
                 <button
