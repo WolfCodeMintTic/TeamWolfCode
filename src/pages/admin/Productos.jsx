@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'assets/productos.css';
 import AddModalProducto from 'components/AddModalProducto';
 import EditModalProducto from 'components/EditModalProducto';
 import axios from "axios";
-import {nanoid} from 'nanoid'
-const URL = "http://localhost:5000/productos"
+import { nanoid } from 'nanoid'
+import { obtenerProductos } from 'utils/productos/api';
+
 
 const Productos = () => {
   const [data, setData] = useState([]);
@@ -27,22 +27,27 @@ const Productos = () => {
     setItem(item);
   }
 
-  const deleteFn = (idProducto) => {
+  const deleteFn = async (_id) => {
     let opcion = window.confirm("Estas seguro que quiere eliminar el producto");
     if (opcion == true) {
-      const newdata = data.filter(e => e.idProducto !== idProducto);
-      setData(newdata)
-    }
-  }
+      await axios.delete(`http://localhost:5000/productos/${_id}/`).then
+        (resp => {
+          console.log(resp.data);
+          const nuewData = data.filter(e => e._id !== _id);
+          setData(nuewData);
+        });
+    };
+  };
 
   const loadAxios = async () => {
-    await axios.get(URL).then(resp => {
+    await obtenerProductos(resp => {
       const nuewData = []
       const dataAxios = resp.data
 
       dataAxios.map(item => {
         nuewData.push(
           {
+            _id: item._id,
             producto: item.producto,
             descripcion: item.descripcion,
             valorUnitario: item.valorUnitario
@@ -85,18 +90,19 @@ const Productos = () => {
               <th>Producto</th>
               <th>Descripcion</th>
               <th>ValorUnitario</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
               <tr key={nanoid()}>
-                <td>{item._id}</td>
+                <th>{item._id.slice(22)}</th>
                 <td>{item.producto}</td>
                 <td>{item.descripcion}</td>
                 <td>{item.valorUnitario}</td>
                 <td>
                   <Button color="primary" onClick={() => editFn(item)}><i className="far fa-edit"></i></Button>{" "}
-                  <Button color="danger" onClick={() => deleteFn(item.idProducto)}><i className="fas fa-trash"></i></Button>
+                  <Button color="danger" onClick={() => deleteFn(item._id)}><i className="fas fa-trash"></i></Button>
                 </td>
               </tr>
             ))}

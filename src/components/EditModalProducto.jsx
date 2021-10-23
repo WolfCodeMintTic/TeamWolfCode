@@ -1,24 +1,39 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import {actualizarProducto} from 'utils/productos/api'
 import {
-    Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Form, Input
+    Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Form
 } from "reactstrap";
-import React, { useState } from "react"
 
 export default function EditModalProducto(props) {
-    const { showEditModal, setShowEditModal, data, setData, item, ...rest } = props;
-    const [modal, setModal] = useState(false);
+    const { showEditModal, setShowEditModal, data, setData, item} = props;
     const toggle = () => setShowEditModal(!showEditModal);
 
-    const SubmitForm = (e) => {
+    const SubmitForm = async(e) => {
         e.preventDefault()
-        const idProducto = item.idProducto;
+        await actualizarProducto(
+            item._id,
+            {
+                 producto: e.target.producto.value,
+                 descripcion: e.target.descripcion.value,
+                 valorUnitario: e.target.valorUnitario.value
+            },
+            (response)=>{
+                console.log("producto modificado")
+                console.log(response.data);
+            },
+            (error) =>{
+                console.log("error modificando producto")
+                console.log(error)
+            }
+        )
+        const _id = item._id;
         const producto = e.target.producto.value;
         const descripcion = e.target.descripcion.value;
         const valorUnitario = e.target.valorUnitario.value;
-        const ventaArray = [{ idProducto, producto, descripcion, valorUnitario}]
-        let nuewData = data.map(obj => ventaArray.find(o => o.idProducto === obj.idProducto) || obj);
-        setData(nuewData);
-        setShowEditModal(false)
+        const productoArray = [{_id, producto, descripcion, valorUnitario}]
+        let nuewData= data.map(obj => productoArray.find(o => o._id === obj._id) || obj);
+        setData(nuewData); 
+        setShowEditModal(false);
     }
     console.log("data:", data)
 
@@ -30,17 +45,6 @@ export default function EditModalProducto(props) {
                 </ModalHeader>
 
                 <ModalBody>
-                    <FormGroup row>
-                        <Label sm={4} htmlFor="idProducto">ID:</Label>
-                        <Col sm={12}>
-                            <input className="form-control"
-                                type="number"
-                                name="idProducto"
-                                value={item.idProducto}
-                            />
-                        </Col>
-                    </FormGroup>
-
                     <FormGroup row className='mt-2'>
                         <Label sm={4} htmlFor="producto">Producto:</Label>
                         <Col sm={12}>

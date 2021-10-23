@@ -1,34 +1,48 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-    Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Form, Input
+    Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Input
 } from "reactstrap";
-import React, { useState } from "react"
+import { crearVenta } from "utils/vendedores/api";
+import React, { useRef } from "react"
 
 export default function AddModal(props) {
-    const { showAddModal, setShowAddModal, data, setData, ...rest } = props;
-    const [modal, setModal] = useState(false);
+    const { showAddModal, setShowAddModal, data, setData} = props;
     const toggle = () => setShowAddModal(!showAddModal);
 
-    const SubmitForm = (e) => {
+    const form = useRef(null)
+    const SubmitForm = async(e) => {
         e.preventDefault()
-        const idVenta = data.length + 1;
-        const valorVenta = e.target.valorVenta.value;
-        const id = data.length + 1;
-        const cantidad = e.target.cantidad.value;
-        const precioUnitario = e.target.precioUnitario.value;
-        const fechaVenta = e.target.fechaVenta.value;
-        const cedulaCliente = e.target.cedulaCliente.value;
-        const cliente = e.target.cliente.value;
-        const vendedor = e.target.vendedor.value;
-        const estado = e.target.estado.value;
-        setData([{ idVenta, valorVenta, id, cantidad, precioUnitario, fechaVenta, cedulaCliente, cliente, vendedor, estado }, ...data]);
+        const fd = new FormData(form.current);
+        const nuevaVenta = {};
+        fd.forEach((value, key) => {
+            nuevaVenta[key] = value;
+        });
+        console.log("form datas", nuevaVenta);
+        await crearVenta({
+            valorVenta: nuevaVenta.valorVenta,
+            identificador: nuevaVenta.identificador,
+            cantidad: nuevaVenta.cantidad,
+            precioUnitario: nuevaVenta.precioUnitario,
+            fechaVenta: nuevaVenta.fechaVenta,
+            cedulaCliente: nuevaVenta.cedulaCliente,
+            cliente: nuevaVenta.cliente,
+            vendedor: nuevaVenta.vendedor,
+            estado: nuevaVenta.estado
+        },
+            (response) => {
+                console.log(response.data);
+                console.log("venta creada")
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
         setShowAddModal(false)
     }
 
-
     return (
         <Modal isOpen={showAddModal} toggle={toggle}>
-            <Form onSubmit={SubmitForm}>
+            <form ref={form} onSubmit={SubmitForm}>
                 <ModalHeader>
                     <div><h3>Registrar nueva venta</h3></div>
                 </ModalHeader>
@@ -41,6 +55,19 @@ export default function AddModal(props) {
                                 type="number"
                                 name="valorVenta"
                                 placeholder="50000"
+                                min="50"
+                                required
+                            />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup row className='mt-2'>
+                        <Label sm={4} htmlFor="identificador">Identificador:</Label>
+                        <Col sm={12}>
+                            <input className="form-control"
+                                type="text"
+                                name="identificador"
+                                placeholder="a5f"
                                 required
                             />
                         </Col>
@@ -53,6 +80,7 @@ export default function AddModal(props) {
                                 required
                                 placeholder="5"
                                 name="cantidad"
+                                min="1"
                             />
                         </Col>
                     </FormGroup>
@@ -65,6 +93,7 @@ export default function AddModal(props) {
                                 name="precioUnitario"
                                 placeholder="25000"
                                 required
+                                min="50"
                             />
                         </Col>
                     </FormGroup>
@@ -106,10 +135,10 @@ export default function AddModal(props) {
                     <FormGroup row>
                         <Label sm={4} htmlFor="vendedor">Vendedor:</Label>
                         <Col sm={12}>
-                            <input className="form-control" 
-                            type="email"
+                            <input className="form-control"
+                                type="email"
                                 name="vendedor"
-                                placeholder="correo@aqui.com"
+                                placeholder="correo aca..."
                                 required
                             />
                         </Col>
@@ -117,8 +146,8 @@ export default function AddModal(props) {
                     <FormGroup row>
                         <Label sm={4} htmlFor="estado">Estado de la venta:</Label>
                         <Col sm={12}>
-                            <Input type="select" name="estado" required defaultValue={0}>
-                                <option disabled value={0}>Seleccione una opcion</option>
+                            <Input type="select" name="estado" required defaultValue=''>
+                                <option disabled value=''>Seleccione una opcion</option>
                                 <option>En proceso</option>
                                 <option>Cancelada</option>
                                 <option>Entregado</option>
@@ -131,7 +160,7 @@ export default function AddModal(props) {
                     <Button color="primary" type="submit">Registrar</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancelar</Button>
                 </ModalFooter>
-            </Form>
+            </form>
         </Modal>
     )
 }
