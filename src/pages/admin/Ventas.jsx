@@ -7,7 +7,8 @@ import EditModal from 'components/EditModal';
 import React, { useState, useEffect } from "react"
 import axios from "axios";
 import { nanoid } from 'nanoid'
-import { obtenerVentas } from "utils/vendedores/api";
+import { obtenerVentas } from "utils/ventas/api";
+import { eliminarVenta } from "utils/ventas/api";
 
 
 const Ventas = () => {
@@ -32,11 +33,15 @@ const Ventas = () => {
     const deleteFn = async (_id) => {
         let opcion = window.confirm("Estas seguro que quiere eliminar la venta");
         if (opcion == true) {
-            await axios.delete(`http://localhost:5000/ventas/${_id}/`).then(resp => {
+            await eliminarVenta(_id, (resp) => {
                 console.log(resp.data);
-                const newdata = data.filter(e => e._id !== _id);
-                setData(newdata)
-            });
+            },
+                (error) => {
+                    console.log(error)
+                }
+            );
+            const newdata = data.filter(e => e._id !== _id);
+            setData(newdata);
         };
     };
 

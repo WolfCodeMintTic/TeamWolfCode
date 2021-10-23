@@ -41,3 +41,12 @@ export const actualizarProducto = async(id, data,resCallback, errorCallback)=> {
     };
     await executeRequest(options, resCallback, errorCallback);
 };
+
+export const eliminarProducto = async (id, resCallback, errorCallback) => {
+    const options = {
+        method: 'DELETE',
+        url: `http://localhost:5000/productos/${id}/`,
+        headers: { 'Content-Type': 'application/json', authorization: getToken() },
+    };
+    await executeRequest(options, resCallback, errorCallback);
+};

@@ -6,6 +6,7 @@ import EditModalProducto from 'components/EditModalProducto';
 import axios from "axios";
 import { nanoid } from 'nanoid'
 import { obtenerProductos } from 'utils/productos/api';
+import { eliminarProducto } from 'utils/productos/api';
 
 
 const Productos = () => {
@@ -30,12 +31,15 @@ const Productos = () => {
   const deleteFn = async (_id) => {
     let opcion = window.confirm("Estas seguro que quiere eliminar el producto");
     if (opcion == true) {
-      await axios.delete(`http://localhost:5000/productos/${_id}/`).then
-        (resp => {
-          console.log(resp.data);
-          const nuewData = data.filter(e => e._id !== _id);
-          setData(nuewData);
-        });
+      await eliminarProducto(_id, (resp) => {
+        console.log(resp.data);
+      },
+        (error) => {
+          console.log(error)
+        }
+      );
+      const nuewData = data.filter(e => e._id !== _id);
+      setData(nuewData);
     };
   };
 

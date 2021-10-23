@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
     Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Input
 } from "reactstrap";
-import { crearVenta } from "utils/vendedores/api";
+import { crearVenta } from "utils/ventas/api";
 import React, { useRef } from "react"
 
 export default function AddModal(props) {

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
     Button, Label, Col, Modal, ModalBody, ModalHeader, ModalFooter, FormGroup, Form, Input
 } from "reactstrap";
-import { actualizarVenta } from "utils/vendedores/api";
+import { actualizarVenta } from "utils/ventas/api";
 import React, { useState } from "react"
 
 export default function EditModal(props) {
