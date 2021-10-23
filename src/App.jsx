@@ -22,7 +22,7 @@ function App() {
     <Auth0Provider
       domain="wolfcode-mintic.us.auth0.com"
       clientId="oKaCtUINrYGi7OtEEcUhX7SwqDvQVBpd"
-      redirectUri="http://localhost:3000/admin"
+      redirectUri="https://rocky-temple-35030.herokuapp.com/admin"
       audience='api-wolfcode-auth'
     >
       <div className="App">
