@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Table, Button, Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EditModalUsuario from 'components/EditModalUsuario';
-import axios from "axios";
 import { nanoid } from 'nanoid'
+import { obtenerUsuarios } from 'utils/usuarios/api';
 
 const Usuarios = () => {
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ const Usuarios = () => {
     setItem(item);
   }
   const loadAxios = async () => {
-    await axios.get("http://localhost:5000/usuarios/").then(resp => {
+    await obtenerUsuarios(resp => {
       const nuewData = []
       const dataAxios = resp.data
 
@@ -27,8 +27,7 @@ const Usuarios = () => {
         nuewData.push(
           {
             _id: item._id,
-            usuario: item.usuario,
-            correo: item.correo,
+            usuario: item.email,
             rol: item.rol,
             estado: item.estado
           },
@@ -63,7 +62,6 @@ const Usuarios = () => {
             <tr>
               <th>ID</th>
               <th>Usuario</th>
-              <th>Correo</th>
               <th>Rol</th>
               <th>Estado</th>
             </tr>
@@ -73,7 +71,6 @@ const Usuarios = () => {
               <tr key={nanoid()}>
                 <td>{item._id.slice(20)}</td>
                 <td>{item.usuario}</td>
-                <td>{item.correo}</td>
                 <td>{item.rol}</td>
                 <td>{item.estado}</td>
                 <td>

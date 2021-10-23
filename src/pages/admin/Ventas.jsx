@@ -57,7 +57,7 @@ const Ventas = () => {
                         cedulaCliente: item.cedulaCliente,
                         cliente: item.cliente,
                         vendedor: item.vendedor,
-                        estado: " "
+                        estado: item.estado
                     },
                 )
             })
@@ -102,6 +102,7 @@ const Ventas = () => {
                             <th>CC-Cliente</th>
                             <th>Cliente</th>
                             <th>Vendedor</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>

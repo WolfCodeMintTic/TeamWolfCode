@@ -26,7 +26,8 @@ export default function AddModal(props) {
             fechaVenta: nuevaVenta.fechaVenta,
             cedulaCliente: nuevaVenta.cedulaCliente,
             cliente: nuevaVenta.cliente,
-            vendedor: nuevaVenta.vendedor
+            vendedor: nuevaVenta.vendedor,
+            estado: nuevaVenta.estado
         },
             (response) => {
                 console.log(response.data);

@@ -21,7 +21,8 @@ export default function EditModal(props) {
                 fechaVenta: e.target.fechaVenta.value,
                 cedulaCliente: e.target.cedulaCliente.value,
                 cliente: e.target.cliente.value,
-                vendedor: e.target.vendedor.value
+                vendedor: e.target.vendedor.value,
+                estado: e.target.estado.value
             },
             (response) => {
                 console.log("venta modificado")

@@ -13,7 +13,10 @@ import Productos from "pages/admin/Productos";
 import Ventas from "pages/admin/Ventas";
 import Usuarios from "pages/admin/Usuarios";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { UserContext } from "context/userContext";
+import { useState } from "react";
 function App() {
+  const [userData, setUserData] = useState({});
   return (
     <Auth0Provider
       domain="wolfcode-mintic.us.auth0.com"
@@ -21,7 +24,8 @@ function App() {
       redirectUri= "http://localhost:3000/admin"
       audience='api-wolfcode-auth'
     >
-      <div>
+      <div className="App">
+        <UserContext.Provider value={{userData, setUserData}}>
         <Router>
           <Switch>
             <Route path={['/admin', '/admin/productos', '/admin/ventas', '/admin/usuarios']}>
@@ -68,6 +72,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
+        </UserContext.Provider>
       </div>
     </Auth0Provider>
   );
