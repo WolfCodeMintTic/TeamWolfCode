@@ -14,7 +14,7 @@ const getToken = () =>{
 export const obtenerProductos = async (successCallback, errorCallback) => {
     const options = {
         method: "GET",
-        url: `${baseURL}/productos/ `,
+        url: `${baseURL}/productos/`,
         headers: {
             authorization: getToken(),
         },
@@ -27,7 +27,7 @@ export const obtenerProductos = async (successCallback, errorCallback) => {
 export const crearProducto = async (data, resCallback, errorCallback) => {
     const options = {
         method : 'POST',
-        url: '${baseURL}/productos/',
+        url: `${baseURL}/productos/`,
         headers: { 'content-Type': 'application/json', authorization: getToken()},
         data,
     };
