@@ -22,7 +22,7 @@ const NavbarResponsive = () => {
                 <ul className='bg-indigo-700 '>
                     <ResponsiveRoute nombre='HOME' ruta='/'/>
                     <ResponsiveRoute nombre='Team' ruta='/Team' />
-                    <ResponsiveRoute nombre='Iniciar Sesion' onClick={() => loginWithRedirect()} />
+                    <ResponsiveRoute nombre='Iniciar Sesion' ruta={loginWithRedirect()} />
                 </ul>
             )}
         </div>
