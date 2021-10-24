@@ -5,6 +5,8 @@ import PrivateComponent from './PrivateComponent';
 
 const SidebarResponsive = () => {
     const [mostrarNavegacion, setMostrarNavegacion] = useState(false);
+    const { logout, user } = useAuth0();
+
     return (
         <div
             className='lg:hidden'
@@ -22,7 +24,7 @@ const SidebarResponsive = () => {
                     
                     <PrivateComponent roleList={['Admin', 'Vendedor']}>
                         <ResponsiveRoute nombre='Productos' ruta='/admin/Productos' />
-                    </PrivateComponent>s
+                    </PrivateComponent>
 
                     <PrivateComponent roleList={['Admin', 'Vendedor']}>
                         <ResponsiveRoute nombre='Ventas' ruta='/admin/ventas' />
@@ -31,6 +33,7 @@ const SidebarResponsive = () => {
                     <PrivateComponent roleList={['Admin']}>
                         <ResponsiveRoute nombre='Usuarios' ruta='/admin/usuarios' />
                     </PrivateComponent>
+                    <ResponsiveRoute nombre='Cerrar sesión' ruta={logout({ returnTo: window.location.origin })} />
                 </ul>
             )}
         </div>
