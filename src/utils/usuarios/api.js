@@ -23,7 +23,7 @@ export const obtenerUsuarios = async (successCallback, errorCallback) => {
 export const obtenerDatosUsuarios = async (successCallback, errorCallback) => {
     const options = {
         method: "GET",
-        url: `https://nameless-eyrie-17054.herokuapp.com/usuarios/self/`,
+        url: `${baseURL}/usuarios/self/`,
         headers: { 'Content-Type': 'application/json', authorization: getToken() },
     };
     await axios.request(options).then(successCallback).catch(errorCallback);
