@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 import PrivateComponent from './PrivateComponent';
 
 
 const SidebarResponsive = () => {
     const [mostrarNavegacion, setMostrarNavegacion] = useState(false);
-    const { logout, user } = useAuth0();
+    const { logout} = useAuth0();
 
     return (
         <div
