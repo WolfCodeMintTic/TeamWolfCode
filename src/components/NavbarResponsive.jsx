@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const NavbarResponsive = () => {
     const [mostrarNavegacion, setMostrarNavegacion] = useState(false);
+    const { loginWithRedirect } = useAuth0();
+
     return (
         <div
             className='lg:hidden'
@@ -19,7 +22,7 @@ const NavbarResponsive = () => {
                 <ul className='bg-indigo-700 '>
                     <ResponsiveRoute nombre='HOME' ruta='/'/>
                     <ResponsiveRoute nombre='Team' ruta='/Team' />
-                    <ResponsiveRoute nombre='Iniciar Sesion' ruta='/login' />
+                    <ResponsiveRoute nombre='Iniciar Sesion' onClick={() => loginWithRedirect()} />
                 </ul>
             )}
         </div>
