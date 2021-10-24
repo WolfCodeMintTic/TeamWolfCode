@@ -33,8 +33,12 @@ const SidebarResponsive = () => {
 
                     <PrivateComponent roleList={['Admin']}>
                         <ResponsiveRoute nombre='Usuarios' ruta='/admin/usuarios' />
-                    </PrivateComponent>
-                    <ResponsiveRoute nombre='Cerrar sesión' ruta={logout({ returnTo: window.location.origin })} />
+                    </PrivateComponent>   
+                    <Link to='/'>
+                        <button
+                            onClick={() => logout({ returnTo: window.location.origin })}
+                            className=" bg-blue-500 p-2 text-white shadow-md hover:bg-indigo-700 rounded-lg w-full">Cerrar Sesión</button>
+                    </Link>
                 </ul>
             )}
         </div>
