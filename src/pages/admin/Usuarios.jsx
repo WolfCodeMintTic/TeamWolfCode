@@ -9,6 +9,8 @@ const Usuarios = () => {
   const [data, setData] = useState([]);
   const [item, setItem] = useState(data);
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+  const [busqueda, setBusqueda] = useState('');
+  const [usuariosFiltrados, setUsuariosFiltrados] = useState(data);
 
   //Modal
   const [showEditModal, setShowEditModal] = useState(false);
@@ -41,6 +43,18 @@ const Usuarios = () => {
       loadAxios();
     }
   }, [ejecutarConsulta]);
+
+  useEffect(() => {
+    console.log('busqueda', busqueda);
+    console.log("lista original", data);
+    setUsuariosFiltrados(
+      data.filter((elemento) => {
+        console.log('elemento', elemento);
+        return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase())
+      })
+    );
+  }, [busqueda, data])
+
   return (
     <>
       <Container>
@@ -49,7 +63,11 @@ const Usuarios = () => {
           <div className="w-2/4">
             <div className="border-2 rounded-xl mt-4">
               <span className="w-1/12"><i className="fa fa-search"></i></span>
-              <input type="search" className="w-11/12 py-1" placeholder="Search..." />
+              <input type="search" 
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+              className="w-11/12 py-1" 
+              placeholder="Buscar..." />
             </div>
           </div>
           <button>
@@ -67,7 +85,7 @@ const Usuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
+            {usuariosFiltrados.map((item) => (
               <tr key={nanoid()}>
                 <td>{item._id.slice(20)}</td>
                 <td>{item.usuario}</td>
