@@ -70,11 +70,11 @@ const Productos = () => {
   }, [ejecutarConsulta]);
 
   useEffect(() => {
-    console.log('busqueda', busqueda);
-    console.log("lista original", data)
+    // console.log('busqueda', busqueda);
+    // console.log("lista original", data);
     setProductosFiltrados(
       data.filter((elemento) => {
-        console.log('elemento', elemento)
+        // console.log('elemento', elemento)
         return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase())
       })
     );
