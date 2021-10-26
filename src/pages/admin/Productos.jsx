@@ -11,6 +11,8 @@ import { eliminarProducto } from 'utils/productos/api';
 const Productos = () => {
   const [data, setData] = useState([]);
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+  const [busqueda, setBusqueda] = useState('');
+  const [productosFiltrados, setProductosFiltrados] = useState(data);
   //Modal
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -67,6 +69,17 @@ const Productos = () => {
     }
   }, [ejecutarConsulta]);
 
+  useEffect(() => {
+    console.log('busqueda', busqueda);
+    console.log("lista original", data)
+    setProductosFiltrados(
+      data.filter((elemento) => {
+        console.log('elemento', elemento)
+        return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase())
+      })
+    );
+  }, [busqueda, data]);
+
   return (
     <>
       <Container>
@@ -76,8 +89,10 @@ const Productos = () => {
             <div className="border-2 rounded-xl mt-4">
               <span className="w-1/12"><i className="fa fa-search"></i></span>
               <input type="search"
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
                 className="w-11/12 py-1"
-                placeholder="Search..." />
+                placeholder="Buscar..." />
             </div>
           </div>
           <button>
@@ -97,7 +112,7 @@ const Productos = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
+            {productosFiltrados.map((item) => (
               <tr key={nanoid()}>
                 <th>{item._id.slice(22)}</th>
                 <td>{item.producto}</td>
