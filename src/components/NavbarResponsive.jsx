@@ -19,8 +19,8 @@ const NavbarResponsive = () => {
                     } hover:text-blue-400 cursor-pointer text-blue-500`}
             />
             {mostrarNavegacion && (
-                <ul className='bg-indigo-700 '>
-                    <ResponsiveRoute nombre='HOME' ruta='/'/>
+                <ul className='bg-indigo-700 text-center'>
+                    <ResponsiveRoute nombre='HOME' ruta='/' />
                     <ResponsiveRoute nombre='Team' ruta='/Team' />
                     <button
                         onClick={() => loginWithRedirect()}

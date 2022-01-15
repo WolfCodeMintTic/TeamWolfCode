@@ -29,7 +29,6 @@ const Navbar = () => {
                 <button
                     onClick={() => loginWithRedirect()}
                     className="bg-blue-500 p-2 text-white shadow-md hover:bg-indigo-700 rounded-lg">Iniciar sesion</button>
-                <img className="w-6 cursor-pointer" title="Cambiar tema" src={luna} alt="icono" />
             </div>
         </nav >
     )

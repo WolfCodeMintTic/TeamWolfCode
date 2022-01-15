@@ -15,13 +15,13 @@ const Sidebar = () => {
             <div className='my-4 '>
                 <Ruta icono='fas fa-user' ruta='/admin/perfil' nombre='Perfil' usuario={user} />
                 <PrivateComponent roleList={['Admin', 'Vendedor']}>
-                <Ruta icono='fas fa-tshirt' ruta='/admin/productos' nombre='Productos' />
+                    <Ruta icono='fas fa-tshirt' ruta='/admin/productos' nombre='Productos' />
                 </PrivateComponent>
                 <PrivateComponent roleList={['Admin', 'Vendedor']}>
-                <Ruta icono='fas fa-cash-register' ruta='/admin/ventas' nombre='Ventas' />
+                    <Ruta icono='fas fa-cash-register' ruta='/admin/ventas' nombre='Ventas' />
                 </PrivateComponent>
                 <PrivateComponent roleList={['Admin']}>
-                <Ruta icono='fas fa-users' ruta='/admin/usuarios' nombre='Usuarios' />
+                    <Ruta icono='fas fa-users' ruta='/admin/usuarios' nombre='Usuarios' />
                 </PrivateComponent>
             </div>
             <Link to='/'>
@@ -42,8 +42,8 @@ const Ruta = ({ icono, ruta, nombre, usuario }) => {
             >
                 {usuario ? (
                     <>
-                    <img src = {usuario.picture} className="h-5 w-5 rounded-full"/>
-                    {usuario.name}
+                        <img src={usuario.picture} className="h-5 w-5 rounded-full" />
+                        {usuario.name}
                     </>
                 ) : (
                     <>

@@ -55,3 +55,24 @@
   background-color: rgb(174, 174, 179);
   cursor: pointer;
 }
+
+.social{
+  margin-top: 30px;
+  display: flex;
+  gap: 1rem;
+}
+.social a {
+  width: 2rem;
+  height: 2rem;
+  border: 1.9px solid #727271;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #727271;
+  font-size: 1rem;
+}
+.social a:hover {
+  border: 1.9px solid #16baf9;
+  color: #16baf9;
+}
